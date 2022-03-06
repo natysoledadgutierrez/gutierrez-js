@@ -1,0 +1,23 @@
+.fecha-hora {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,34,121,1) 35%, rgba(0,212,255,1) 100%);
+    padding: 50px;
+    max-width:900px;
+    width:100%;
+    text-align:center;
+    border-radius:20px;
+    margin:0 auto;
+    margin-top:5%;
+}
+#reloj{
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,230,1) 100%);
+    font-family: sans-serif;
+    font-size:80px;
+    color:rgb(10, 10, 10);
+}
+#fecha {
+    letter-spacing:10px;
+    font-size:30px;
+    font-family:arial,sans-serif;
+    color:white;
+}
