@@ -38,64 +38,51 @@ const producto4 = {
     envioGratis: true
 }
 
+const agregarAlCarrito = (producto, cantidad) => {
+    producto.cantidadQueLleva = cantidad;
+    carrito.push(producto);
+}
+
+const carrito = [];
+const productos = [producto1, producto2, producto3, producto4];
 let seguir;
-let total = 0;
-let cantidad = 0;
 
-while (seguir !== "N") {
-    const productos = prompt(`Selecciona los productos 
-        1.${producto1.nombre} $ ${producto1.precio}
-        2.${producto2.nombre} $ ${producto2.precio}
-        3.${producto3.nombre} $ ${producto3.precio}
-        4.${producto4.nombre} $ ${producto4.precio}`);
+while (seguir !== "n") {
+    const posicionProducto = prompt(`Selecciona los productos 
+        0.${productos[0].nombre} $ ${productos[0].precio}
+        1.${productos[1].nombre} $ ${productos[1].precio}
+        2.${productos[2].nombre} $ ${productos[2].precio}
+        3.${productos[3].nombre} $ ${productos[3].precio}`);
 
-    let productoSeleccionado;
-
-    switch (productos) {
-        case '1':
-            alert(`Se agrego al carrito ${producto1.nombre}`);
-            productoSeleccionado = producto1;
-            break;
-        case '2':
-            alert(`Se agrego al carrito ${producto2.nombre}`);
-            productoSeleccionado = producto2;
-            break;
-        case '3':
-            alert(`Se agrego al carrito ${producto3.nombre}`);
-            productoSeleccionado = producto3;
-            break;
-        case '4':
-            alert(`Se agrego al carrito ${producto4.nombre}`);
-            productoSeleccionado = producto4;
-            break;
-        default:
-            alert('No existe el producto.')
-            break;
-    }
+    let productoSeleccionado = productos[posicionProducto];
 
     if (productoSeleccionado !== undefined) {
-        let cantidadQueLleva = parseInt(prompt(`Cuantos ${productoSeleccionado.nombre} queres llevar?`));
-        if (puedeComprar(productoSeleccionado, cantidadQueLleva)) {
-            total += productoSeleccionado.precio * productoSeleccionado.stock;
-            cantidad += cantidadQueLleva;
-            stockRestante(productoSeleccionado, cantidadQueLleva);
+        let cantidadDelProductoQueLleva = parseInt(prompt(`Cuantos ${productoSeleccionado.nombre} queres llevar?`));
+        if (tieneStock(productoSeleccionado, cantidadDelProductoQueLleva)) {
+            agregarAlCarrito(productoSeleccionado, cantidadDelProductoQueLleva);
+            let stockRestante = productoSeleccionado.stock - cantidadDelProductoQueLleva;
+            alert(`Al producto ${productoSeleccionado.nombre} le quedan ${stockRestante} de stock`);
         }
         else {
-            alert(`La cantidad de ${cantidadQueLleva} supera el stock de ${productoSeleccionado.stock}`);
+            alert(`La cantidad de ${cantidadDelProductoQueLleva} supera el stock de ${productoSeleccionado.stock}`);
         }
     }
 
-    seguir = prompt('Queres dejar de comprar? Presiona la tecla "N"');
+    seguir = prompt('Queres dejar de comprar? Presiona la tecla "n"');
 }
 
-alert(`La cantidad es de ${cantidad} y el total es de $ ${total}`)
+let total = 0;
+let cantidadTotal = 0;
 
-function stockRestante(producto, cantidad) {
-    let stockRestante = producto.stock - cantidad;
-    alert(`El stock restante es de ${stockRestante}`);
+
+for(let i=0; i < carrito.length; i++){
+    total += carrito[i].precio * carrito[i].cantidadQueLleva;
+    cantidadTotal += carrito[i].cantidadQueLleva;
 }
 
-function puedeComprar(producto, cantidadQueLleva) {
+alert(`La cantidad es de ${cantidadTotal} y el total es de $ ${total}`);
+
+function tieneStock(producto, cantidadQueLleva) {
     if (cantidadQueLleva < 1) {
         return false;
     }
