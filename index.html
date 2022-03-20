@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/animate.min.css">
         <link rel="stylesheet" href="css/style.css">
-        <script src="src/main.js"></script>
+        <script src="src/main.js" defer></script>
         <title>NatTech Insumos Informáticos - Home</title>
     </head>
     <body class="colorfondo">
@@ -59,7 +59,7 @@
                                 <a class="nav-link" href="html/contacto.html">Contacto</a>
                             </li>
                         </ul>
-                        <form class="d-flex">
+                        <div class="d-flex">
                             <div class="form-group row">
                                 <div class="col-2 carrito">
                                     <div class="input-group">
@@ -71,15 +71,15 @@
                                 <div class="col-10">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text">
+                                            <div class="input-group-text" onclick="buscarTexto()">
                                                 <i class="fa fa-search"></i>
                                             </div>
                                         </div>
-                                        <input id="text" name="text" type="text" class="form-control">
+                                        <input id="buscador" name="text" type="text" class="form-control">
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </nav>

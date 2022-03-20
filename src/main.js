@@ -27,6 +27,15 @@ const buscarProducto = (valorDelBuscador) => {
     return productosFiltrados;
 }
 
+const buscarTexto = () => {
+    let valorBusqueda = document.getElementById("buscador").value;
+    alert("Ver resultado en consola");
+    let resultado = buscarProducto(valorBusqueda);
+    console.log(resultado);
+    return resultado;
+}
+
+
 const obtenerOfertas = () => {
     let productosFiltrados = productos.filter(
          (producto) => producto.esOferta

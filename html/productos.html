@@ -24,7 +24,7 @@
             href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/animate.min.css">
         <link rel="stylesheet" href="../css/style.css">
-        <script src="../src/main.js"></script>
+        <script src="../src/main.js" defer></script>
         <title>NatTech Insumos Informáticos - Productos</title>
     </head>
     <body>
@@ -73,29 +73,27 @@
                                 <a class="nav-link" href="contacto.html">Contacto</a>
                             </li>
                         </ul>
-                        <form class="d-flex">
+                        <div class="d-flex">
                             <div class="form-group row">
                                 <div class="col-2 carrito">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <i class="fa fa-shopping-cart
-                                                fa-lg"></i>
+                                            <i class="fa fa-shopping-cart fa-lg"></i>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-10">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text">
+                                            <div class="input-group-text" onclick="buscarTexto()">
                                                 <i class="fa fa-search"></i>
                                             </div>
                                         </div>
-                                        <input id="text" name="text" type="text"
-                                            class="form-control">
+                                        <input id="buscador" name="text" type="text" class="form-control">
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -103,6 +101,10 @@
         <main>
             <h1>Productos</h1>
             <h2>Disfrutá de nuestros productos.</h2>
+            <p>Probá las siguientes acciones provisorias que interactuan con la página en cuanto a la funcionalidad del carrito.</p>
+            <button class="btn btn-primary mx-auto d-block" onclick="console.log(ordenarPorPrecioMenor())">Ordenar Precio Menor (Ver en Consola)</button><br/>
+            <button class="btn btn-primary mx-auto d-block" onclick="console.log(ordenarPorPrecioMayor())">Ordenar Precio Mayor (Ver en Consola)</button><br/>
+            <button class="btn btn-primary mx-auto d-block" onclick="console.log(obtenerOfertas())">Obtener Ofertas (Ver en Consola)</button><br/>
             <div class="container-productos">
                 <div class="row">
                     <div class="card producto">
