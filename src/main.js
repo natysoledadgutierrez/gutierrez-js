@@ -44,7 +44,6 @@ const productos = [
     precio: 8899, stock: 2, cuotas: 12, interes: 0, envioGratis: true, esOferta: false, imagen:"memoriaexterna3.jpg" },
 ]
 
-generarCards(productos);
 function generarCards(productosAMostrar){
     let acumuladorDeCards = ``;
     productosAMostrar.forEach((producto) => {
@@ -64,7 +63,7 @@ function generarCards(productosAMostrar){
         `<div class="card producto">
             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
             ${producto.stock > 0 ? 'Hay stock' : 'Sin Stock'}</div>
-            <img src="../img/${producto.imagen}" class="card-img-top producto-zoom" alt="">
+            <img src="../img/${producto.imagen}" class="card-img-top producto-zoom" alt="${producto.nombre}">
             <div class="card-body">
                 <p class="card-text">${producto.nombre}</p>
                     <div class="precios"> $${producto.precio} ${cuotas}</div>
@@ -112,12 +111,6 @@ const buscarProducto = (valorDelBuscador) => {
     return productosFiltrados;
 }
 
-const buscarTexto = () => {
-    let valorBusqueda = document.getElementById("buscador").value;
-    let resultado = buscarProducto(valorBusqueda);
-    generarCards(resultado)
-}
-
 
 const obtenerOfertas = () => {
     let productosFiltrados = productos.filter(
@@ -134,4 +127,35 @@ const ordenarPorPrecioMenor = () => {
 const ordenarPorPrecioMayor = () => {
     let productosOrdenados = productos.sort((a,b) => (a.precio < b.precio) ? 1 : ((b.precio < a.precio) ? -1 : 0));
     return productosOrdenados;
+}
+
+const botonBuscar = document.getElementById("buscar");
+botonBuscar.onclick = () =>  {
+    let valorBusqueda = document.getElementById("buscador").value;
+    let resultado = buscarProducto(valorBusqueda);
+    generarCards(resultado);
+};
+
+const textoBuscar = document.getElementById("buscador");
+textoBuscar.oninput = (event) =>  {
+    let valorBusqueda = event.target.value;
+    let resultado = buscarProducto(valorBusqueda);
+    generarCards(resultado);
+};
+
+const validarVacio = (event) => {
+    let valor = event.target.value;
+
+    if(valor == ""){
+        document.querySelector("#error").innerHTML = "Por favor completa el campo.";
+    }
+    else{
+        document.querySelector("#error").innerHTML = "";
+    }
+}
+
+const teclaEnter = (event) => {
+    if (event.keyCode === 13) {
+        alert('Se presiono tecla enter para enviar el formulario');
+    }
 }

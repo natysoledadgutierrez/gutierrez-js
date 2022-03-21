@@ -25,6 +25,7 @@
         <link rel="stylesheet" href="../css/animate.min.css">
         <link rel="stylesheet" href="../css/style.css">
         <script src="../src/main.js" defer></script>
+        <script src="../src/productos.js" defer></script>
         <title>NatTech Insumos Informáticos - Productos</title>
     </head>
     <body>
@@ -86,7 +87,7 @@
                                 <div class="col-10">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text" onclick="buscarTexto()">
+                                            <div class="input-group-text" id="buscar">
                                                 <i class="fa fa-search"></i>
                                             </div>
                                         </div>
@@ -102,252 +103,17 @@
         <main>
             <h1>Productos</h1>
             <h2>Disfrutá de nuestros productos.</h2>
-            <p>Probá las siguientes acciones provisorias que interactuan con la página en cuanto a la funcionalidad del carrito.</p>
-            <button class="btn btn-primary mx-auto d-block" onclick="generarCards(ordenarPorPrecioMenor())">Ordenar Precio Menor</button><br/>
-            <button class="btn btn-primary mx-auto d-block" onclick="generarCards(ordenarPorPrecioMayor())">Ordenar Precio Mayor</button><br/>
-            <button class="btn btn-primary mx-auto d-block" onclick="generarCards(obtenerOfertas())">Obtener Ofertas</button><br/>
+            <div class="col-md-12 text-center"> 
+                <button class="btn btn-primary mx-auto" onclick="generarCards(ordenarPorPrecioMenor())">Ordenar Precio Menor</button>&nbsp;
+                <button class="btn btn-primary mx-auto" onclick="generarCards(ordenarPorPrecioMayor())">Ordenar Precio Mayor</button>&nbsp;
+                <button class="btn btn-primary mx-auto" onclick="generarCards(obtenerOfertas())">Obtener Ofertas</button>
+            </div>
             <section class="py-5">
                 <div class="container px-4 px-lg-5 mt-5">
                     <div id="listado-productos" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     </div>
                 </div>
             </section>
-            <!--<div class="container-productos">
-                <div class="row">
-                    <div class="card producto">
-                        <img src="../img/monitor22.jpg" class="card-img-top
-                            producto-zoom" alt="Monitor">
-                        <div class="card-body">
-                            <p class="card-text">Monitor Samsung Led 22 Pulgadas
-                                Frecuencia Hz 60
-                                Hdmi Full Hd Promo</p>
-                                <div class="precios"> $26.599<br>12 x $ 2.216 </div>
-                                <div class="cuotas">CUOTAS SIN INTERÉS</div>
-                            <a class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/monitor24.jpg" class="card-img-top
-                            producto-zoom" alt="Monitor">
-                        <div class="card-body">
-                            <p class="card-text">Monitor Led 24 Pulgadas
-                                Iqual Iq24h 1080p
-                                Hdmi Full Hd Promo</p>
-                                <div class="precios"> $20.999<br>12 x $ 2.977 </div>
-                                 <div class="cuotas">CUOTAS SIN INTERÉS</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/monitor19.jpg" class="card-img-top
-                            producto-zoom" alt="Monitor">
-                        <div class="card-body">
-                            <p class="card-text"> Monitor LG 19M38A <br>
-                                led 19 Pulgadas <br>
-                                negro 100V/240V</p>
-                                <div class="precios"> $21.839 <br>12x $3.096</div>
-                                 <div class="cuotas">CUOTAS SIN INTERÉS</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/teclado1.jpg" class="card-img-top
-                            producto-zoom" alt="Teclado">
-                        <div class="card-body">
-                            <p class="card-text">Teclado Dell KB522 QWERTY inglés internacional color negro</p>
-                                <div class="precios"> $15.707 <br>12x $ 2.227</div>
-                                 <div class="cuotas">CUOTAS SIN INTERÉS</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/teclado2.jpg" class="card-img-top
-                            producto-zoom" alt="Teclado">
-                        <div class="card-body">
-                            <p class="card-text"> Teclado gamer Redragon Vata Pro K580RGB-PRO QWERTY Outemu Brown español
-                                 latinoamérica color negro con luz RGB</p>
-                                 <div class="precios"> $ 7.390 <br>12x $ 1.047</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/teclado3.jpg" class="card-img-top
-                            producto-zoom" alt="Teclado">
-                        <div class="card-body">
-                            <p class="card-text"> Teclado gamer Redragon Brahma
-                                 K586-PRO QWERTY Outemu Blue inglés US color negro con luz RGB</p>
-                                 <div class="precios"> $ 10.258 <br>12x $ 1.454</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/auricular1.jpg" class="card-img-top
-                            producto-zoom" alt="Auricular"> 
-                        <div class="card-body">
-                            <p class="card-text">Auriculares gamer <br> HyperX Cloud Alpha <br> black y red</p>
-                                <div class="precios"> $ 12.250 <br>12x $ 1.737</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/auricular2.jpg" class="card-img-top
-                            producto-zoom" alt="Auricular">
-                        <div class="card-body">
-                            <p class="card-text">Auriculares gamer inalámbricos 
-                                Logitech G Series G935 negro y azul con luz rgb LED</p>
-                                <div class="precios"> $ 18.999 <br>12x $ 2.694</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/auricular3.jpg" class="card-img-top
-                            producto-zoom" alt="Auricular">
-                        <div class="card-body">
-                            <p class="card-text"> Auriculares gamer inalámbricos Astro A50 negro y gris</p>
-                                <div class="precios"> $ 30.291<br>12x $ 4.295</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/mouse1.jpg" class="card-img-top
-                            producto-zoom" alt="Mouse">
-                        <div class="card-body">
-                            <p class="card-text">Mouse de juego Redragon Centrophorus2 M601-RGB
-                                <div class="precios"> $ 1.739 <br>12x $ 246</div></p>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/mouse2.jpg" class="card-img-top
-                            producto-zoom" alt="Mouse">
-                        <div class="card-body">
-                            <p class="card-text">Mouse de juego Logitech G Series Lightsync G203 black</p>
-                                <div class="precios"> $ 2.549 <br>12x $ 361</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/pendrive1.jpg" class="card-img-top
-                            producto-zoom" alt="Pendrive">
-                        <div class="card-body">
-                            <p class="card-text"> Pendrive SanDisk Cruzer Blade 64GB 2.0 negro y rojo</p>
-                                <div class="precios"> $ 1.061 <br>12x $ 150</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/gabinete1.jpg" class="card-img-top
-                            producto-zoom" alt="Pendrive">
-                        <div class="card-body">
-                            <p class="card-text"> Gabinete Gamer Iqual Cm-9527 Leg Rgb Templado + Fuente</p>
-                                <div class="precios"> $ 7.199 <br></div>
-                                <div class="cuotas">Envio gratis</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/gabinete2.jpg" class="card-img-top
-                            producto-zoom" alt="Pendrive">
-                        <div class="card-body">
-                            <p class="card-text"> Gabinete Gamer Noga 8608 Coolers Panel Vidrio + Fuente</p>
-                                <div class="precios"> $ 8.499 <br></div>
-                                <div class="cuotas">Envio gratis</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/gabinete3.jpg" class="card-img-top
-                            producto-zoom" alt="Pendrive">
-                        <div class="card-body">
-                            <p class="card-text">Gabinete Gamer Iqual Cm-2801 Templado Fuente 700w Led Cuotas </p>
-                                <div class="precios"> $ 10.799 <br>6x $1.799 </div>
-                                <div class="cuotas">CUOTAS SIN INTERÉS</div>
-                                <div class="cuotas">Envio gratis</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/fuente1.jpg" class="card-img-top
-                            producto-zoom" alt="Pendrive">
-                        <div class="card-body">
-                            <p class="card-text"> Fuente de alimentación para PC Noga ATX-550 P4 550W negra 200V </p>
-                                <div class="precios"> $ 1.429 <br>12x $ 202</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/fuente2.jpg" class="card-img-top
-                            producto-zoom" alt="Pendrive">
-                        <div class="card-body">
-                            <p class="card-text"> Fuente de alimentación para PC Noga RGB Power ATX-700 RGB 700W negra 200V - 240V</p>
-                                <div class="precios"> $ 5.529 <br>12x $ 784</div>
-                                <div class="cuotas">Envio gratis</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/fuente3.jpg" class="card-img-top
-                            producto-zoom" alt="Pendrive">
-                        <div class="card-body">
-                            <p class="card-text"> Fuente de alimentación para PC Thermaltake Technology TR2 Series TR2-500NL2NC 500W black 115V/230V</p>
-                                <div class="precios"> $ 8.199 <br>12x $ 1.162</div>
-                                <div class="cuotas">Envio gratis</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/memoriaexterna1.jpg" class="card-img-top
-                            producto-zoom" alt="Pendrive">
-                        <div class="card-body">
-                            <p class="card-text"> Disco duro externo Western Digital WD Elements WDBUZG0010BBK 1TB negro</p>
-                                <div class="precios"> $ 6.799 <br>12x $ 964</div>
-                                <div class="cuotas">Envio gratis</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/memoriaexterna2.jpg" class="card-img-top
-                            producto-zoom" alt="Pendrive">
-                        <div class="card-body">
-                            <p class="card-text"> Disco duro externo Seagate Expansion STEA2000400 2TB negro</p>
-                                <div class="precios"> $ 9.929 <br>12x $ 1.408</div>
-                                <div class="cuotas">Envio gratis</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                    <div class="card producto">
-                        <img src="../img/memoriaexterna3.jpg" class="card-img-top
-                            producto-zoom" alt="Pendrive">
-                        <div class="card-body">
-                            <p class="card-text"> Disco duro externo Seagate Basic STJL2000400 2TB negro</p>
-                                <div class="precios"> $ 8.899 <br>12x $ 1.261</div>
-                                <div class="cuotas">Envio gratis</div>
-                            <a  class="btn btn-primary">Agregar al
-                                carrito</a>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
         </main>
         <footer class="pt-4 my-md-5 pt-md-5 border-top producto">
             <div class="row">
