@@ -79,6 +79,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <i class="fa fa-shopping-cart fa-lg"></i>
+                                            <div id="cantidad-carrito">0</div>
                                         </div>
                                     </div>
                                 </div>
@@ -102,10 +103,16 @@
             <h1>Productos</h1>
             <h2>Disfrutá de nuestros productos.</h2>
             <p>Probá las siguientes acciones provisorias que interactuan con la página en cuanto a la funcionalidad del carrito.</p>
-            <button class="btn btn-primary mx-auto d-block" onclick="console.log(ordenarPorPrecioMenor())">Ordenar Precio Menor (Ver en Consola)</button><br/>
-            <button class="btn btn-primary mx-auto d-block" onclick="console.log(ordenarPorPrecioMayor())">Ordenar Precio Mayor (Ver en Consola)</button><br/>
-            <button class="btn btn-primary mx-auto d-block" onclick="console.log(obtenerOfertas())">Obtener Ofertas (Ver en Consola)</button><br/>
-            <div class="container-productos">
+            <button class="btn btn-primary mx-auto d-block" onclick="generarCards(ordenarPorPrecioMenor())">Ordenar Precio Menor</button><br/>
+            <button class="btn btn-primary mx-auto d-block" onclick="generarCards(ordenarPorPrecioMayor())">Ordenar Precio Mayor</button><br/>
+            <button class="btn btn-primary mx-auto d-block" onclick="generarCards(obtenerOfertas())">Obtener Ofertas</button><br/>
+            <section class="py-5">
+                <div class="container px-4 px-lg-5 mt-5">
+                    <div id="listado-productos" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    </div>
+                </div>
+            </section>
+            <!--<div class="container-productos">
                 <div class="row">
                     <div class="card producto">
                         <img src="../img/monitor22.jpg" class="card-img-top
@@ -340,7 +347,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </main>
         <footer class="pt-4 my-md-5 pt-md-5 border-top producto">
             <div class="row">

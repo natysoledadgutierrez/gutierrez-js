@@ -57,7 +57,9 @@ header {
       color: aliceblue; }
   header .navbar-brand img {
     width: 150px; }
-
+  header #cantidad-carrito {
+    color: white;
+  }
 main h1 {
   margin-top: 3vh;
   margin-left: 2vw;
