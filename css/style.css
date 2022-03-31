@@ -59,6 +59,7 @@ header {
     width: 150px; }
   header #cantidad-carrito {
     color: white;
+    padding-left: 30%;
   }
 main h1 {
   margin-top: 3vh;

@@ -1,4 +1,17 @@
-const carrito = [];
+const obtenerCarrito = () => {
+    if(localStorage.getItem("carrito") == null) {
+        return [];
+    }
+    else {
+        const storageProductos = JSON.parse(localStorage.getItem("carrito"));
+        return storageProductos;
+    }
+}
+
+const carrito = obtenerCarrito();
+
+document.getElementById("cantidad-carrito").innerHTML = carrito.length;
+
 const productos = [
     { id: '1', nombre: 'Monitor Samsung Led 22 Pulgadas Frecuencia Hz 60 Hdmi Full Hd Promo', 
     precio: 26599, stock: 70, cuotas: 12, interes: 15, envioGratis: false, esOferta: false, imagen:"monitor22.jpg" },
@@ -79,9 +92,12 @@ function mostrarCardsEnElHTML(cards){
     document.getElementById("listado-productos").innerHTML = cards;
 };
 
+
 const agregarAlCarrito = (id) => {
     let producto = productos.filter(producto => producto.id == id);
     carrito.push(producto);
+    
+    localStorage.setItem("carrito", JSON.stringify(carrito));
     document.getElementById("cantidad-carrito").innerHTML = carrito.length;
     console.log(carrito);
 }
