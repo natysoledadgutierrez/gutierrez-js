@@ -12,6 +12,9 @@ const carrito = obtenerCarrito();
 
 document.getElementById("cantidad-carrito").innerHTML = carrito.length;
 
+
+let auricularCloud = { id: '7', nombre: 'Auriculares gamer HyperX Cloud Alpha black y red', 
+precio: 12252, stock: 8, cuotas: 12, interes: 0, envioGratis: true, esOferta: false, imagen:"auricular1.jpg" }
 const productos = [
     { id: '1', nombre: 'Monitor Samsung Led 22 Pulgadas Frecuencia Hz 60 Hdmi Full Hd Promo', 
     precio: 26599, stock: 70, cuotas: 12, interes: 15, envioGratis: false, esOferta: false, imagen:"monitor22.jpg" },
@@ -25,8 +28,7 @@ const productos = [
     precio: 7390, stock: 2, cuotas: 0, interes: 0, envioGratis: true, esOferta: false, imagen:"teclado2.jpg"  },
     { id: '6', nombre: 'Teclado gamer Redragon Brahma K586-PRO QWERTY Outemu Blue inglés US color negro con luz RGB', 
     precio: 10258, stock: 2, cuotas: 12, interes: 0, envioGratis: true, esOferta: false, imagen:"teclado3.jpg" },
-    { id: '7', nombre: 'Auriculares gamer HyperX Cloud Alpha black y red', 
-    precio: 12252, stock: 8, cuotas: 12, interes: 0, envioGratis: true, esOferta: false, imagen:"auricular1.jpg" },
+    auricularCloud,
     { id: '8', nombre: 'Auriculares gamer inalámbricos Logitech G Series G935 negro y azul con luz rgb LED', 
     precio: 18999, stock: 4, cuotas: 12, interes: 0, envioGratis: true, esOferta: false, imagen:"auricular2.jpg" },
     { id: '9', nombre: 'Auriculares gamer inalámbricos Astro A50 negro y gris', 
@@ -55,34 +57,37 @@ const productos = [
     precio: 9929, stock: 2, cuotas: 12, interes: 0, envioGratis: true, esOferta: false, imagen:"memoriaexterna2.jpg" },
     { id: '21', nombre: 'Disco duro externo Seagate Basic STJL2000400 2TB negro', 
     precio: 8899, stock: 2, cuotas: 12, interes: 0, envioGratis: true, esOferta: false, imagen:"memoriaexterna3.jpg" },
+    { ...auricularCloud, id: '22', nombre: 'Auriculares gamer HyperX Cloud Alpha Violeta', imagen:"auricular4.jpg"}
 ]
 
 function generarCards(productosAMostrar){
     let acumuladorDeCards = ``;
     productosAMostrar.forEach((producto) => {
+        const {coutas: cuotasProducto, interes, nombre, imagen, id, stock, precio } = producto;
+
         let cuotas = ``;
-        if (producto.cuotas > 0){
-            let multiplicadorInteres = (producto.interes / 100) + 1;
-            let cuota = (producto.precio * multiplicadorInteres) / producto.cuotas;
-            cuotas = `<br>${producto.cuotas} x $${cuota}`;
+        if (cuotasProducto > 0 && interes >= 0) {
+            let multiplicadorInteres = (interes / 100) + 1;
+            let cuota = (precio * multiplicadorInteres) / cuotasProducto;
+            cuotas = `<br>${cuotasProducto} x $${cuota}`;
         }
 
         let sinInteres = ``;
-        if (producto.interes === 0) {
+        if (interes === 0) {
             sinInteres = `<div class="cuotas">CUOTAS SIN INTERÉS</div>`;
         }
         
         acumuladorDeCards += 
         `<div class="card producto">
             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
-            ${producto.stock > 0 ? 'Hay stock' : 'Sin Stock'}</div>
-            <img src="../img/${producto.imagen}" class="card-img-top producto-zoom" alt="${producto.nombre}">
+            ${stock > 0 ? 'Hay stock' : 'Sin Stock'}</div>
+            <img src="../img/${imagen}" class="card-img-top producto-zoom" alt="${nombre}">
             <div class="card-body">
-                <p class="card-text">${producto.nombre}</p>
-                    <div class="precios"> $${producto.precio} ${cuotas}</div>
+                <p class="card-text">${nombre}</p>
+                    <div class="precios"> $${precio} ${cuotas}</div>
                     ${sinInteres}
 
-                <button class="btn btn-primary" onclick="agregarAlCarrito(${producto.id})">Agregar al carrito</button>
+                <button class="btn btn-primary" onclick="agregarAlCarrito(${id})">Agregar al carrito</button>
             </div>
         </div>`
     });
@@ -108,10 +113,7 @@ const borrarDelCarrito = (id) => {
 }
 
 const tieneStock = (producto, cantidadQueLleva) => {
-    if (cantidadQueLleva < 1) {
-        return false;
-    }
-    else if (cantidadQueLleva > producto.stock) {
+    if (cantidadQueLleva < 1 || cantidadQueLleva > producto.stock ) {
         return false;
     }
     else {
