@@ -1,3 +1,13 @@
+const mensajeProductoAgregado = () => {
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Se agrego correctamente el producto al carrito.',
+        showConfirmButton: false,
+        timer: 2000
+      })
+}
+
 const obtenerCarrito = () => {
     if(localStorage.getItem("carrito") == null) {
         return [];
@@ -101,10 +111,9 @@ function mostrarCardsEnElHTML(cards){
 const agregarAlCarrito = (id) => {
     let producto = productos.filter(producto => producto.id == id);
     carrito.push(producto);
-    
     localStorage.setItem("carrito", JSON.stringify(carrito));
     document.getElementById("cantidad-carrito").innerHTML = carrito.length;
-    console.log(carrito);
+    mensajeProductoAgregado();
 }
 
 const borrarDelCarrito = (id) => {
