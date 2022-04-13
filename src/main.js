@@ -1,3 +1,21 @@
+const obtenerPrecioDolar = async () => {
+    const resp = fetch('https://api.bluelytics.com.ar/json/last_price')
+    .then( (resp) => resp.json())
+    .then( (data) => {
+        console.log(data);
+        enviarMensaje(`El precio de cotizacion del dolar oficial al día de hoy es de ${data[0].value_sell}.`);
+    });
+}
+
+const enviarMensaje = (mensaje) => {
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: mensaje,
+        showConfirmButton: true
+      })
+}
+
 const mensajeProductoAgregado = () => {
     Swal.fire({
         position: 'center',
