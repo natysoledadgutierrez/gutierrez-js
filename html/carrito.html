@@ -26,8 +26,8 @@
         <link rel="stylesheet" href="../css/style.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="../src/main.js" defer></script>
-        <script src="../src/productos.js" defer></script>
-        <title>NatTech Insumos Informáticos - Productos</title>
+        <script src="../src/carrito.js" defer></script>
+        <title>NatTech Insumos Informáticos - Carrito</title>
     </head>
     <body>
         <header>
@@ -65,8 +65,7 @@
                                 <a class="nav-link" href="ofertas.html">Ofertas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page"
-                                    href="productos.html">Productos</a>
+                                <a class="nav-link" href="productos.html">Productos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="galeria.html">Galería</a>
@@ -102,14 +101,8 @@
             </nav>
         </header>
         <main>
-            <h1>Productos</h1>
-            <h2>Disfrutá de nuestros productos.</h2>
-            <div class="col-md-12 text-center"> 
-                <button class="btn btn-primary mx-auto" onclick="generarCards(ordenarPorPrecioMenor())">Ordenar Precio Menor</button>&nbsp;
-                <button class="btn btn-primary mx-auto" onclick="generarCards(ordenarPorPrecioMayor())">Ordenar Precio Mayor</button>&nbsp;
-                <button class="btn btn-primary mx-auto" onclick="generarCards(obtenerOfertas())">Obtener Ofertas</button>
-                <button class="btn btn-success mx-auto" onclick="obtenerPrecioDolar()">Precio del dólar</button>
-            </div>
+            <h1>Carrito</h1>
+            <h2>Los siguientes productos estan en tu carrito.</h2>
             <section class="py-5">
                 <div class="container px-4 px-lg-5 mt-5">
                     <div id="listado-productos" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">

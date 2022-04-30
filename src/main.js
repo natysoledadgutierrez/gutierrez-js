@@ -2,25 +2,43 @@ const obtenerPrecioDolar = async () => {
     const resp = fetch('https://api.bluelytics.com.ar/json/last_price')
     .then( (resp) => resp.json())
     .then( (data) => {
-        console.log(data);
-        enviarMensaje(`El precio de cotizacion del dolar oficial al día de hoy es de ${data[0].value_sell}.`);
+        mensajeExitoso(`El precio de cotizacion del dolar oficial al día de hoy es de ${data[0].value_sell}.`);
     });
 }
 
-const enviarMensaje = (mensaje) => {
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: mensaje,
-        showConfirmButton: true
-      })
-}
-
-const mensajeProductoAgregado = () => {
+const mensajeCarrito = () => {
     Swal.fire({
         position: 'center',
         icon: 'success',
         title: 'Se agrego correctamente el producto al carrito.',
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+        timer: 2000,
+        confirmButtonText:
+        '<a href="carrito.html" style="text-decoration:none;color:white;"><i class="fa fa-cart"></i> Ir al Carrito</a>',
+      confirmButtonAriaLabel: 'Ir al Carrito',
+      cancelButtonText:
+        '<i class="fa fa-cross"></i> Seguir Comprando',
+      cancelButtonAriaLabel: 'Seguir Comprando'
+      })
+}
+
+const mensajeExitoso = (mensaje) => {
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 2000
+      })
+}
+
+const mensajeError = (mensaje) => {
+    Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: mensaje,
         showConfirmButton: false,
         timer: 2000
       })
@@ -121,22 +139,78 @@ function generarCards(productosAMostrar){
     });
     mostrarCardsEnElHTML(acumuladorDeCards);
 }
+
+function generarCarrito(){
+    let acumuladorDeCards = ``;
+    carrito.forEach((producto) => {
+        const {coutas: cuotasProducto, interes, nombre, imagen, id, stock, precio } = producto;
+
+        let cuotas = ``;
+        if (cuotasProducto > 0 && interes >= 0) {
+            let multiplicadorInteres = (interes / 100) + 1;
+            let cuota = (precio * multiplicadorInteres) / cuotasProducto;
+            cuotas = `<br>${cuotasProducto} x $${cuota}`;
+        }
+
+        let sinInteres = ``;
+        if (interes === 0) {
+            sinInteres = `<div class="cuotas">CUOTAS SIN INTERÉS</div>`;
+        }
+        
+        acumuladorDeCards += 
+        `<div class="card producto" id="carrito-${id}">
+           <img src="../img/${imagen}" class="card-img-top producto-zoom" alt="${nombre}">
+            <div class="card-body">
+                <p class="card-text">${nombre}</p>
+                    <div class="precios"> $${precio} ${cuotas}</div>
+                    ${sinInteres}
+
+                <button class="btn btn-primary" onclick="quitarDelCarrito(${id})">Quitar</button>
+            </div>
+        </div>`
+    });
+    mostrarCardsEnElHTML(acumuladorDeCards);
+}
+
 function mostrarCardsEnElHTML(cards){
     document.getElementById("listado-productos").innerHTML = cards;
 };
 
+const quitarDelCarrito = (id) => {
+    borrarDelCarrito(id);
+    const divCard = document.getElementById(`carrito-${id}`);
+    divCard.remove();
+    mensajeExitoso('Se ha quitado con exito producto del carrito.');
+}
 
 const agregarAlCarrito = (id) => {
-    let producto = productos.filter(producto => producto.id == id);
+    let producto = productos.find(producto => producto.id == id);
     carrito.push(producto);
     localStorage.setItem("carrito", JSON.stringify(carrito));
     document.getElementById("cantidad-carrito").innerHTML = carrito.length;
-    mensajeProductoAgregado();
+
+    new Promise((resolve, reject) => {
+        if (producto.stock > 0) {
+            resolve (mensajeCarrito());
+        } else {
+            reject (mensajeError('No hubo stock para el producto.'))
+        }
+    });
 }
 
 const borrarDelCarrito = (id) => {
-    let productoParaBorrar = carrito.filter(carrito => carrito.id == id);
+    let productoParaBorrar = carrito.find(carrito => carrito.id == id);    
     carrito.shift(productoParaBorrar);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    document.getElementById("cantidad-carrito").innerHTML = carrito.length;
+    
+    new Promise((resolve, reject) => {
+        if (productoParaBorrar !== 'undefined') {
+            resolve (mensajeExitoso('Se se borro exitosamente el producto del carrito.'));
+        } else {
+            reject (mensajeError('No se ha encontrado el producto en el carrito.'))
+        }
+    });
 }
 
 const tieneStock = (producto, cantidadQueLleva) => {
